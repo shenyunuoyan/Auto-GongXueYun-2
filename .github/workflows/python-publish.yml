@@ -1,0 +1,39 @@
+#此工作流将在创建发布时使用Twine上传Python包
+#有关更多信息，请参阅：https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python#发布-到包注册中心
+
+#此工作流使用未经GitHub认证的操作。
+#它们由第三方提供，受
+#单独的服务条款、隐私政策和支持
+#文档
+
+名称 :上传Python包
+
+在 :
+释放 :
+类型 : [出版 ]
+
+权限 :
+目录 :阅读
+
+工作 :
+部署 :
+
+运行 :ubuntu最新
+
+步骤 :
+ -使用 :行动/签出@v3
+ -名称 :设置Python
+使用 :行动/setup-python@v3
+具有 :
+python版本 :“3.x”
+ -名称 :安装依赖项
+运行 : |
+ python-m pip安装--升级pip
+pip安装版本
+ -名称 :生成包
+运行 :python-m构建
+ -名称 :发布包
+使用 :派帕/gh-action-pypi-publish@27b31702a0e7fc50959f5ad993c78deac1bdfc29
+具有 :
+用户 :__代币__
+密码 : $ { { 秘密。 PYPI_API_TOKEN公司 } }
